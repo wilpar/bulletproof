@@ -1,16 +1,15 @@
 # bulletproof_auth
 
-A new Flutter project.
+Firebase authentication and state management using Riverpod. Routes using Routemaster.
+
+Heavily inspired by Rivaan Ranawat's excellent https://github.com/RivaanRanawat/flutter-reddit-clone  See the entire 9.5 hour video at https://www.youtube.com/watch?v=B8Sx7wGiY-s
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+- After cloning, you will need to configure flutterfire to add your firebase credentials. Grab a basic video on firebase setup if this is something you need help with.
 
-A few resources to get you started if this is your first Flutter project:
+```flutterfire configure```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- replace the default Podfile in /ios with the one supplied in ios-dist.  It adds one line to prefetch all the firebase packages. Big time saver!
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- you may be asked to do something with android.  I don't know, I'm an IOS guy. Sorry.
