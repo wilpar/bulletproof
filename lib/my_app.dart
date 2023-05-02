@@ -33,7 +33,7 @@ class _BaseAppState extends ConsumerState<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return ref.watch(authStateChangeProvider).when(
+    return ref.watch(authStateChangesProvider).when(
           data: (user) => MaterialApp.router(
             debugShowCheckedModeBanner: false,
             theme: ThemeData(primarySwatch: Colors.blueGrey),

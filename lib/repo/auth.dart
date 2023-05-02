@@ -11,24 +11,24 @@ import 'base_providers.dart';
 
 final authRepositoryProvider = Provider(
   (ref) => AuthRepository(
-    firestore: ref.read(firestoreProvider),
     auth: ref.read(authProvider),
+    firestore: ref.read(firestoreProvider),
   ),
 );
 
 class AuthRepository {
-  final FirebaseFirestore _firestore;
   final FirebaseAuth _auth;
+  final FirebaseFirestore _firestore;
 
   AuthRepository({
-    required FirebaseFirestore firestore,
     required FirebaseAuth auth,
+    required FirebaseFirestore firestore,
   })  : _auth = auth,
         _firestore = firestore;
 
   CollectionReference get _users => _firestore.collection('users');
 
-  Stream<User?> get authStateChange => _auth.authStateChanges();
+  Stream<User?> get authStateChanges => _auth.authStateChanges();
 
   FutureEither<Profile> signIn() async {
     try {
