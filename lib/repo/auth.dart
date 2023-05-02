@@ -30,11 +30,11 @@ class AuthRepository {
 
   Stream<User?> get authStateChanges => _auth.authStateChanges();
 
-  FutureEither<Profile> signIn() async {
+  FutureEither<Profile> signIn(String email, String password) async {
     try {
       UserCredential cred = await _auth.signInWithEmailAndPassword(
-        email: 'c@c.com',
-        password: 'asdfasdf',
+        email: email,
+        password: password,
       );
       Profile userModel = await getProfileData(cred.user!.uid).first;
       return right(userModel);
