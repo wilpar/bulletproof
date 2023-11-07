@@ -6,7 +6,13 @@ Heavily inspired by Rivaan Ranawat's excellent https://github.com/RivaanRanawat/
 
 ## Getting Started
 
-- After cloning, you will need to configure flutterfire to add your firebase credentials. Grab a basic video on firebase setup if this is something you need help with.
+- Clone me.
+
+- After cloning, you will need to create your platform directories.  From the main directory simply run
+
+```flutter create .```
+
+- Next, you will need to configure flutterfire to add your firebase credentials. Grab a basic video on firebase setup if this is something you need help with.
 
 ```flutterfire configure```
 
