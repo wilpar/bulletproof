@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -13,13 +13,20 @@ class LoginScreen extends ConsumerWidget {
     String email,
     String password,
   ) {
-    if (kDebugMode) {
-      print('Sign In');
-    }
+    debugPrint("Log In");
     ref.read(authControllerProvider.notifier).signIn(
           email,
           password,
           context,
+        );
+  }
+
+  void signUp(BuildContext context, WidgetRef ref) {
+    debugPrint("Sign Up");
+    ref.read(authControllerProvider.notifier).signUp(
+          context,
+          'test@test.com',
+          'asdfasdf',
         );
   }
 
@@ -35,20 +42,30 @@ class LoginScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Bulletproof Auth"),
-        actions: [
-          IconButton(
-            onPressed: () => signIn(
-              ref,
-              context,
-              email,
-              password,
-            ),
-            icon: const Icon(Icons.login),
-          ),
-        ],
       ),
-      body: const Center(
-        child: Text("Sign In"),
+      body: Column(
+        children: [
+          const Spacer(),
+          Center(
+            child: CupertinoButton.filled(
+              onPressed: () => signIn(
+                ref,
+                context,
+                email,
+                password,
+              ),
+              child: const Text("Sign In C@C"),
+            ),
+          ),
+          const Spacer(),
+          Center(
+            child: CupertinoButton.filled(
+              onPressed: () => signUp(context, ref),
+              child: const Text("Sign Up test@test"),
+            ),
+          ),
+          const Spacer(),
+        ],
       ),
     );
   }

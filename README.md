@@ -15,6 +15,10 @@ Heavily inspired by Rivaan Ranawat's excellent https://github.com/RivaanRanawat/
 - Next, you will need to configure flutterfire to add your firebase credentials. Grab a basic video on firebase setup if this is something you need help with.
 
 ```flutterfire configure```
+also
+```firebase init``` 
+
+- you will want to deploy the rules to ensure you can write to your profile upon registration (firebase deploy).  If you have functions, there is a basic cleanup function to delete the profile associated with the user account.  You will need the blaze account type to run functions.
 
 - replace the default Podfile in /ios with the one supplied in ios-dist.  It adds one line to prefetch all the firebase packages. Big time saver!
 

@@ -6,6 +6,7 @@
 /web/
 /windows/
 
+.firebaserc
 firebase_options.dart
 
 # Miscellaneous
