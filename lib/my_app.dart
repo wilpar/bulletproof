@@ -5,7 +5,9 @@ import 'package:routemaster/routemaster.dart';
 
 import 'routes.dart';
 import 'controllers/auth.dart';
+import 'controllers/profile.dart';
 import 'models/profile.dart';
+
 import 'widgets/error_text.dart';
 import 'widgets/loader.dart';
 import 'widgets/snackbar.dart';
@@ -26,7 +28,8 @@ class _BaseAppState extends ConsumerState<MyApp> {
         .watch(authControllerProvider.notifier)
         .getProfileData(user.uid)
         .first;
-    ref.read(profileProvider.notifier).update((state) => profile);
+    // ref.read(profileProvider.notifier).update((state) => profile);
+    ref.read(userProfileProvider.notifier).update(profile);
     if (!mounted) return;
     showSnackBar(context, "Welcome, ${profile?.firstName}");
   }

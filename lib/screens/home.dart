@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../controllers/auth.dart';
+import '../controllers/profile.dart';
 import '../models/profile.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -11,11 +12,14 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final Profile? profile = ref.watch(profileProvider);
+    final profile = ref.watch(userProfileProvider);
+    final title = profile is Profile
+        ? "Signed In: ${profile.firstName}"
+        : "Bulletproof Auth";
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Signed In: ${profile?.firstName}"),
+        title: Text(title),
         actions: [
           IconButton(
             onPressed: () {

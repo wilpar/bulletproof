@@ -9,7 +9,7 @@ import '../models/failure.dart';
 import '../models/profile.dart';
 import '../type_defs.dart';
 
-import 'base_providers.dart';
+import 'firebase.dart';
 
 final authRepositoryProvider = Provider(
   (ref) => AuthRepository(

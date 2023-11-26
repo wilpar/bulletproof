@@ -6,7 +6,7 @@ import '../models/profile.dart';
 import '../repo/auth.dart';
 import '../widgets/snackbar.dart';
 
-final profileProvider = StateProvider<Profile?>((ref) => null);
+import 'profile.dart';
 
 final authControllerProvider = StateNotifierProvider<AuthController, bool>(
   (ref) => AuthController(
@@ -19,11 +19,6 @@ final authStateChangesProvider = StreamProvider((ref) {
   final authController = ref.watch(authControllerProvider.notifier);
   return authController.authStateChanges;
 });
-
-// final getProfileDataProvider = StreamProvider.family((ref, String uid) {
-//   final authController = ref.watch(authControllerProvider.notifier);
-//   return authController.getProfileData(uid);
-// });
 
 class AuthController extends StateNotifier<bool> {
   final AuthRepository _authRepository;
@@ -47,8 +42,10 @@ class AuthController extends StateNotifier<bool> {
     final user = await _authRepository.signIn(email, password);
     user.fold(
       (l) => showSnackBar(context, l.message),
-      (profile) =>
-          _ref.read(profileProvider.notifier).update((state) => profile),
+      (profile) {
+        // _ref.read(profileProvider.notifier).update((state) => profile);
+        _ref.read(userProfileProvider.notifier).update(profile);
+      },
     );
     state = false;
   }
@@ -58,8 +55,10 @@ class AuthController extends StateNotifier<bool> {
     final user = await _authRepository.signUp(email, password);
     user.fold(
       (l) => showSnackBar(context, l.message),
-      (profile) =>
-          _ref.read(profileProvider.notifier).update((state) => profile),
+      (profile) {
+        // _ref.read(profileProvider.notifier).update((state) => profile);
+        _ref.read(userProfileProvider.notifier).update(profile);
+      },
     );
     state = false;
   }
@@ -86,13 +85,15 @@ class AuthController extends StateNotifier<bool> {
   deleteYourself(BuildContext context) {
     showSnackBar(context, "You Deleted Yourself!");
     _authRepository.logOut();
-    _ref.invalidate(profileProvider);
+    // _ref.invalidate(profileProvider);
+    _ref.invalidate(userProfileProvider);
   }
 
   void logout() {
     state = true;
     _authRepository.logOut();
     state = false;
-    _ref.invalidate(profileProvider);
+    // _ref.invalidate(profileProvider);
+    _ref.invalidate(userProfileProvider);
   }
 }
